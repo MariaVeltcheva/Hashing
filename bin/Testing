@@ -1,0 +1,71 @@
+#!/bin/bash
+#Assignment 3 Testing
+
+#Delete insertion analysis files that were created last time script was run
+if [ -f "../results/Insertion/Linear.txt" ] #check if file exists
+then rm "../results/Insertion/Linear.txt"
+fi
+
+if [ -f "../results/Insertion/Quadratic.txt" ] #check if file exists
+then rm "../results/Insertion/Quadratic.txt"
+fi
+
+if [ -f "../results/Insertion/Chaining.txt" ] #check if file exists
+then rm "../results/Insertion/Chaining.txt"
+fi
+
+#Delete searching analysis files that were created last time script was run
+#Delete total search probe count files
+if [ -f "../results/Searching/Total/Total_Linear.txt" ] #check if file exists
+then rm "../results/Searching/Total/Total_Linear.txt"
+fi
+
+if [ -f "../results/Searching/Total/Total_Quadratic.txt" ] #check if file exists
+then rm "../results/Searching/Total/Total_Quadratic.txt"
+fi
+
+if [ -f "../results/Searching/Total/Total_Chaining.txt" ] #check if file exists
+then rm "../results/Searching/Total/Total_Chaining.txt"
+fi
+
+#Delete average search probe count files
+if [ -f "../results/Searching/Average/Average_Linear.txt" ] #check if file exists
+then rm "../results/Searching/Average/Average_Linear.txt"
+fi
+
+if [ -f "../results/Searching/Average/Average_Quadratic.txt" ] #check if file exists
+then rm "../results/Searching/Average/Average_Quadratic.txt"
+fi
+
+if [ -f "../results/Searching/Average/Average_Chaining.txt" ] #check if file exists
+then rm "../results/Searching/Average/Average_Chaining.txt"
+fi
+
+#Delete max search probe count files
+if [ -f "../results/Searching/Max/Max_Linear.txt" ] #check if file exists
+then rm "../results/Searching/Max/Max_Linear.txt"
+fi
+
+if [ -f "../results/Searching/Max/Max_Quadratic.txt" ] #check if file exists
+then rm "../results/Searching/Max/Max_Quadratic.txt"
+fi
+
+if [ -f "../results/Searching/Max/Max_Chaining.txt" ] #check if file exists
+then rm "../results/Searching/Max/Max_Chaining.txt"
+fi
+
+#Delete textfile containing shuffled records created last time the script was run
+if [ -f "../data/cleaned_data_shuffled.txt" ] #check if file exists
+then rm "../data/cleaned_data_shuffled.txt"
+fi
+
+#run Shuffled class to generate textfile with shuffled Date/Time strings
+java "Shuffled"
+
+#Call Hashing class with each probing scheme for each table size 
+for N in 653 751 829 919 1009
+do
+	java "Hashing" $N "Linear" "../data/cleaned_data.csv" 400
+	java "Hashing" $N "Quadratic" "../data/cleaned_data.csv" 400
+	java "Hashing" $N "Chaining" "../data/cleaned_data.csv" 400
+done
